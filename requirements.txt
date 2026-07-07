@@ -1,4 +1,4 @@
-altair==6.2.2
+altair==5.5.0
 anyio==4.14.1
 appnope==0.1.4
 argon2-cffi==25.1.0
@@ -82,7 +82,7 @@ pillow==12.2.0
 platformdirs==4.10.0
 prometheus_client==0.25.0
 prompt_toolkit==3.0.52
-protobuf==7.35.1
+protobuf==5.29.5
 psutil==7.2.2
 ptyprocess==0.7.0
 pure_eval==0.2.3
