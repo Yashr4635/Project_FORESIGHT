@@ -22,7 +22,7 @@ from datetime import datetime
 # ============================================================
 st.set_page_config(
     page_title="Project FORESIGHT | Executive Dashboard",
-    page_icon="📊",
+    page_icon="https://kommodo.ai/i/nIr8j3ZfwoC2uy8nvw7V",
     layout="wide",
     initial_sidebar_state="expanded",
 )
