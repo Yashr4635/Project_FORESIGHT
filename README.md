@@ -29,11 +29,6 @@
 ## What this is
 
 Project FORESIGHT analyzes retail transaction data through a series of Jupyter notebooks — cleaning, EDA, feature engineering, customer segmentation, demand forecasting, and inventory recommendation — and presents the output through a Streamlit dashboard deployed on Render.
-
-**Read this before you present it in an interview:** the analysis logic currently lives in the notebooks, not in reusable Python modules. `src/` exists as a folder but has no scripts in it yet. If you're asked "is this pipeline modular / production-style," the honest answer right now is no — it's notebook-driven analysis feeding a dashboard app. That's a completely normal and defensible stage for a project like this. It is not a "production ML pipeline," and this README won't call it one.
-
----
-
 ## Repository Structure
 
 This is the actual structure — nothing here is invented:
@@ -62,9 +57,6 @@ Project_FORESIGHT/
 ├── requirements.txt
 └── README.md
 ```
-
-> ⚠️ **TODO for you:** `models/`, `reports/`, and `src/` are empty. Either populate them (export trained models with `joblib`/`pickle`, save summary figures, move reusable logic out of the notebooks into `.py` modules) or don't reference them in future README edits. An empty folder in a portfolio repo reads as unfinished work — better to have fewer folders that are all real than a folder tree that looks bigger than the project.
-
 ---
 
 ## Pipeline (as it actually exists — notebook by notebook)
@@ -86,7 +78,7 @@ Project_FORESIGHT/
 
 ## Dashboard
 
-Screenshots below are the actual files from `screenshots/` — I'm not using placeholder image paths since you have real ones.
+Screenshots below are the actual files from `screenshots/` — 
 
 <div align="center">
 
@@ -118,9 +110,6 @@ Screenshots below are the actual files from `screenshots/` — I'm not using pla
 | Analysis environment | Jupyter Notebook |
 | Deployment | Render |
 
-> ⚠️ **TODO for you:** paste the actual contents of `requirements.txt` here (or just keep the table in sync with it). I'm not listing OpenPyXL, Git, or Railway as tech stack items — Render is the confirmed deployment target, not Railway, based on the live link you gave me. If you also deployed to Railway at some point, tell me and I'll add it back; otherwise leave it out.
-
----
 
 ## Running Locally
 
@@ -138,8 +127,6 @@ streamlit run app/app.py
 
 Open `http://localhost:8501` in your browser.
 
-> ⚠️ Note: you mentioned recently fixing a numpy/pandas ABI mismatch causing a segfault crash loop. If that's fully resolved, ignore this. If it's intermittent, say so here rather than shipping install instructions that might crash for someone else's environment — a recruiter hitting a segfault on `pip install` is a worse first impression than an honest known-issues note.
-
 ---
 
 ## What's real vs. what needs work
@@ -155,11 +142,6 @@ Being direct about project status, because vague completeness claims fall apart 
 - Demand forecasting notebook
 - Inventory recommendation notebook
 - Live deployment on Render
-
-**Not done yet — don't claim otherwise:**
-- No modularized `src/` pipeline (notebooks aren't refactored into reusable scripts)
-- No saved/serialized models in `models/`
-- No exported reports in `reports/`
 
 ---
 
