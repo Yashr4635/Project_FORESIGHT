@@ -2,345 +2,165 @@
 
 # PROJECT FORESIGHT
 
-### AI-Powered Retail Sales Intelligence Dashboard
+### Retail Sales Analytics Dashboard
 
-*Transforming raw transactional data into strategic retail decisions through machine learning and interactive analytics.*
-
-<br>
+*An exploratory data science project that turns raw e-commerce transaction data into an interactive Streamlit dashboard.*
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
 ![Pandas](https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white)
-![Scikit--Learn](https://img.shields.io/badge/Scikit--Learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
-![Plotly](https://img.shields.io/badge/Plotly-3F4F75?style=for-the-badge&logo=plotly&logoColor=white)
+![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-<br>
-
-**[Explore the Dashboard](#running-locally)** · **[View Features](#dashboard-features)** · **[Report an Issue](../../issues)** · **[Request a Feature](../../issues)**
+**[GitHub Repository](https://github.com/Yashr4635/Project_FORESIGHT)**
 
 </div>
 
 ---
 
-## Project Overview
+## What this is
 
-**Project FORESIGHT** is an end-to-end retail analytics system that converts raw e-commerce transaction data into actionable business intelligence. It combines a rigorous data science pipeline — cleaning, feature engineering, segmentation, and forecasting — with a polished, interactive Streamlit dashboard designed for executive decision-making.
+Project FORESIGHT analyzes retail transaction data through a series of Jupyter notebooks — cleaning, EDA, feature engineering, customer segmentation, demand forecasting, and inventory recommendation — and presents the output through a Streamlit dashboard.
 
-Built on the **Online Retail II Dataset**, FORESIGHT simulates a real-world retail intelligence product: the kind of internal tool a data team would ship to help merchandising, marketing, and inventory teams answer one core question — *what should we do next, and why?*
-
-The project is intentionally structured to reflect production-grade data science practice: reproducible notebooks, modular processing scripts, a clean dashboard-ready dataset layer, and a presentation surface that non-technical stakeholders can actually use.
+**Read this before you present it in an interview:** the analysis logic currently lives in the notebooks, not in reusable Python modules. `src/` exists as a folder but has no scripts in it yet. If you're asked "is this pipeline modular / production-style," the honest answer right now is no — it's notebook-driven analysis feeding a dashboard app. That's a completely normal and defensible stage for a project like this. It is not a "production ML pipeline," and this README won't call it one.
 
 ---
 
-## Problem Statement
+## Repository Structure
 
-Retail businesses generate enormous volumes of transactional data — but most of it goes unused beyond basic revenue reporting. Common gaps include:
-
-- No unified view of revenue performance across time, geography, and product categories
-- Customer bases treated as homogeneous, when in reality they contain distinct behavioral segments
-- Demand planning driven by intuition rather than statistically grounded forecasts
-- Inventory decisions made reactively instead of proactively
-- Insights trapped in static spreadsheets instead of interactive, explorable tools
-
-**Project FORESIGHT** addresses these gaps by building a complete pipeline — from raw data to a decision-ready dashboard — that surfaces patterns a spreadsheet simply cannot.
-
----
-
-## Objectives
-
-- Clean and structure a real-world, imperfect retail transaction dataset
-- Engineer features that capture customer behavior, product performance, and temporal trends
-- Segment customers using unsupervised learning to enable targeted business strategy
-- Forecast short-term demand to support planning and procurement decisions
-- Translate model outputs into practical inventory recommendations
-- Prepare a clean, dashboard-ready dataset layer decoupled from raw data processing
-- Deliver findings through a professional, interactive, and exportable dashboard
-
----
-
-## Dashboard Features
-
-| Feature | Description |
-|---|---|
-| **Executive KPI Cards** | At-a-glance summary of revenue, orders, customers, and average order value |
-| **Interactive Sidebar Filters** | Filter by date range, country, product category, and customer segment |
-| **Revenue Trend** | Time-series visualization of revenue with drill-down granularity (daily/weekly/monthly) |
-| **Revenue by Country (World Map)** | Choropleth map visualizing geographic revenue distribution |
-| **Business Insights** | Auto-generated narrative insights highlighting notable trends and anomalies |
-| **Analytics Dashboard** | Deep-dive statistical views: cohort behavior, seasonality, and distribution analysis |
-| **Product Performance** | Best/worst performing SKUs, category-level revenue contribution, and return rates |
-| **Customer Analysis** | Segment-level breakdown from RFM and clustering models |
-| **PDF Export** | One-click export of the current dashboard view for reporting and sharing |
-| **Professional Dark Theme** | Custom-themed UI built for extended analyst use and executive presentation |
-
----
-
-## Machine Learning Workflow
-
-The project follows a linear, auditable pipeline — each stage consumes the previous stage's output and produces a versioned artifact for the next.
+This is the actual structure — nothing here is invented:
 
 ```
-Raw Transactional Data
+Project_FORESIGHT/
+├── app/
+│   └── app.py                   # Streamlit dashboard entry point
+├── data/                        # Raw and processed datasets
+├── models/                      # (currently empty — no serialized models saved yet)
+├── notebooks/
+│   ├── 01_Data_Cleaning.ipynb
+│   ├── 02_EDA.ipynb
+│   ├── 03_Feature_Engineering.ipynb
+│   ├── 04_Customer_Segmentation.ipynb
+│   ├── 05_Demand_Forecasting.ipynb
+│   ├── 06_Inventory_Recommendation.ipynb
+│   └── 07_Dashboard_Preparation.ipynb
+├── reports/                      # (currently empty)
+├── screenshots/
+│   ├── dashboard.png
+│   ├── analytics.png
+│   ├── map.png
+│   └── insights.png
+├── src/                          # (currently empty — pipeline not yet modularized)
+├── requirements.txt
+└── README.md
+```
+
+> ⚠️ **TODO for you:** `models/`, `reports/`, and `src/` are empty. Either populate them (export trained models with `joblib`/`pickle`, save summary figures, move reusable logic out of the notebooks into `.py` modules) or don't reference them in future README edits. An empty folder in a portfolio repo reads as unfinished work — better to have fewer folders that are all real than a folder tree that looks bigger than the project.
+
+---
+
+## Pipeline (as it actually exists — notebook by notebook)
+
+```
+01_Data_Cleaning        → handle missing IDs, cancellations, duplicates
+02_EDA                  → distribution, trend, and correlation analysis
+03_Feature_Engineering  → RFM and time-based features
+04_Customer_Segmentation→ K-Means clustering on RFM features
+05_Demand_Forecasting   → category/SKU-level demand forecasting
+06_Inventory_Recommendation → reorder signals from forecast output
+07_Dashboard_Preparation→ aggregation for the Streamlit app
         │
         ▼
-┌───────────────────────┐
-│   1. Data Cleaning     │  → handle missing IDs, cancellations, duplicates, outliers
-└───────────┬───────────┘
-        ▼
-┌───────────────────────┐
-│ 2. Exploratory Data    │  → distribution analysis, seasonality, correlation study
-│    Analysis (EDA)      │
-└───────────┬───────────┘
-        ▼
-┌───────────────────────┐
-│ 3. Feature Engineering │  → RFM metrics, time-based features, product-level features
-└───────────┬───────────┘
-        ▼
-┌───────────────────────┐
-│ 4. Customer            │  → K-Means clustering on RFM feature space
-│    Segmentation        │
-└───────────┬───────────┘
-        ▼
-┌───────────────────────┐
-│ 5. Demand Forecasting  │  → time-series forecasting per category/SKU
-└───────────┬───────────┘
-        ▼
-┌───────────────────────┐
-│ 6. Inventory           │  → reorder signals derived from forecast + velocity
-│    Recommendation      │
-└───────────┬───────────┘
-        ▼
-┌───────────────────────┐
-│ 7. Dashboard Dataset   │  → aggregation & flattening for fast Streamlit rendering
-│    Preparation         │
-└───────────┬───────────┘
-        ▼
-┌───────────────────────┐
-│ 8. Interactive         │  → Streamlit application layer
-│    Streamlit Dashboard │
-└───────────────────────┘
-```
-
-**Segmentation approach:** Customers are profiled using Recency, Frequency, and Monetary (RFM) metrics, then clustered via K-Means to identify actionable groups such as high-value loyalists, at-risk customers, and one-time buyers.
-
-**Forecasting approach:** Demand is modeled at the category/SKU level using historical revenue and quantity trends, producing short-horizon forecasts that feed directly into the inventory recommendation logic.
-
----
-
-## Folder Structure
-
-```
-project-foresight/
-│
-├── data/
-│   ├── raw/                     # Original Online Retail II dataset
-│   ├── interim/                 # Cleaned, intermediate data
-│   └── processed/               # Final dashboard-ready datasets
-│
-├── notebooks/
-│   ├── 01_data_cleaning.ipynb
-│   ├── 02_exploratory_data_analysis.ipynb
-│   ├── 03_feature_engineering.ipynb
-│   ├── 04_customer_segmentation.ipynb
-│   ├── 05_demand_forecasting.ipynb
-│   └── 06_inventory_recommendation.ipynb
-│
-├── src/
-│   ├── data_cleaning.py
-│   ├── feature_engineering.py
-│   ├── segmentation.py
-│   ├── forecasting.py
-│   ├── inventory.py
-│   └── dashboard_prep.py
-│
-├── dashboard/
-│   ├── app.py                   # Streamlit entry point
-│   ├── components/              # KPI cards, charts, filters
-│   ├── assets/                  # Theme, logo, custom CSS
-│   └── utils/                   # Helper functions for the app layer
-│
-├── reports/
-│   ├── figures/                 # Exported charts and screenshots
-│   └── insights_summary.md      # Narrative business insights
-│
-├── models/                      # Serialized clustering & forecasting models
-│
-├── tests/                       # Unit tests for pipeline components
-│
-├── requirements.txt
-├── README.md
-└── LICENSE
+   app/app.py (Streamlit)
 ```
 
 ---
 
-## Tech Stack Table
+## Dashboard
 
-| Layer | Technology | Purpose |
-|---|---|---|
-| Core Language | Python 3.10+ | Primary development language |
-| Data Processing | Pandas, NumPy | Cleaning, transformation, aggregation |
-| Machine Learning | Scikit-learn | Clustering, feature scaling, forecasting utilities |
-| Visualization | Plotly | Interactive charts, world map, trend lines |
-| Application Layer | Streamlit | Dashboard framework and UI rendering |
-| Data Source | Online Retail II Dataset | Real-world transactional retail data |
+Screenshots below are the actual files from `screenshots/` — I'm not using placeholder image paths since you have real ones.
+
+<div align="center">
+
+**Executive Overview**
+![Dashboard](screenshots/dashboard.png)
+
+**Analytics View**
+![Analytics](screenshots/analytics.png)
+
+**Geographic Revenue**
+![Map](screenshots/map.png)
+
+**Business Insights**
+![Insights](screenshots/insights.png)
+
+</div>
 
 ---
 
-## Installation
+## Tech Stack
 
-**Prerequisites**
+| Layer | Technology |
+|---|---|
+| Language | Python 3.10+ |
+| Data processing | Pandas, NumPy |
+| Machine learning | Scikit-learn (K-Means) |
+| Visualization | Plotly |
+| Dashboard | Streamlit |
+| Analysis environment | Jupyter Notebook |
 
-- Python 3.10 or higher
-- pip or conda package manager
-- Git
-
-**Clone the repository**
-
-```bash
-git clone https://github.com/<your-username>/project-foresight.git
-cd project-foresight
-```
-
-**Create a virtual environment**
-
-```bash
-python -m venv venv
-source venv/bin/activate        # On Windows: venv\Scripts\activate
-```
-
-**Install dependencies**
-
-```bash
-pip install -r requirements.txt
-```
+> ⚠️ **TODO for you:** paste the actual contents of `requirements.txt` here (or just keep the table in sync with it). I'm not listing OpenPyXL, Git, Render, or Railway as tech stack items because I haven't seen evidence they're in use — don't add them back in unless they're real dependencies/deployment targets.
 
 ---
 
 ## Running Locally
 
-**1. Prepare the dataset**
-
-Place the Online Retail II dataset inside `data/raw/`, then run the processing pipeline:
-
 ```bash
-python src/data_cleaning.py
-python src/feature_engineering.py
-python src/segmentation.py
-python src/forecasting.py
-python src/inventory.py
-python src/dashboard_prep.py
+git clone https://github.com/Yashr4635/Project_FORESIGHT.git
+cd Project_FORESIGHT
+
+python -m venv venv
+source venv/bin/activate        # Windows: venv\Scripts\activate
+
+pip install -r requirements.txt
+
+streamlit run app/app.py
 ```
 
-**2. Launch the dashboard**
+Open `http://localhost:8501` in your browser.
 
-```bash
-streamlit run dashboard/app.py
-```
-
-**3. Open in browser**
-
-Navigate to `http://localhost:8501` to explore the live dashboard.
+> ⚠️ Note: you mentioned recently fixing a numpy/pandas ABI mismatch causing a segfault crash loop. If that's fully resolved, ignore this. If it's intermittent, say so here rather than shipping install instructions that might crash for someone else's environment — a recruiter hitting a segfault on `pip install` is a worse first impression than an honest known-issues note.
 
 ---
 
-## Dashboard Screenshots
+## What's real vs. what needs work
 
-<div align="center">
+Being direct about project status, because vague completeness claims fall apart under questioning:
 
-*Executive Overview*
+**Done:**
+- Data cleaning notebook
+- EDA notebook
+- Feature engineering (RFM)
+- Streamlit dashboard app connected to processed data
+- Customer segmentation via K-Means (notebook-based)
+- Demand forecasting notebook
+- Inventory recommendation notebook
 
-`![Executive KPI Overview](reports/figures/executive_overview.png)`
-
-<br>
-
-*Revenue Trend & World Map*
-
-`![Revenue Trend and World Map](reports/figures/revenue_geography.png)`
-
-<br>
-
-*Customer Segmentation View*
-
-`![Customer Segmentation](reports/figures/customer_segments.png)`
-
-<br>
-
-*Product Performance & Inventory Recommendations*
-
-`![Product Performance](reports/figures/product_performance.png)`
-
-</div>
-
-> Replace the placeholder image paths above with actual exported screenshots in `reports/figures/` once the dashboard is running.
-
----
-
-## Results
-
-- Consolidated over half a million raw transaction records into a clean, analysis-ready dataset
-- Identified distinct customer segments with measurably different purchasing behavior and lifetime value
-- Produced category-level demand forecasts to support proactive inventory planning
-- Reduced manual reporting effort by replacing static spreadsheets with a live, filterable dashboard
-- Delivered an executive-ready reporting surface with one-click PDF export
-
----
-
-## Business Insights
-
-- A small proportion of customers consistently drives a disproportionate share of total revenue, reinforcing the value of loyalty-focused retention strategy
-- Revenue is heavily concentrated in a limited number of geographic markets, highlighting clear expansion opportunities elsewhere
-- Certain product categories show strong seasonal spikes, indicating opportunities for pre-emptive stocking ahead of peak periods
-- A meaningful segment of customers shows declining recency and frequency, flagging churn risk that can be addressed through targeted re-engagement campaigns
-- Fast-moving, high-margin products are frequently under-stocked relative to demand, pointing to inventory allocation inefficiencies
-
----
-
-## Future Improvements
-
-- Integrate real-time data ingestion via streaming or scheduled ETL pipelines
-- Add advanced forecasting models (e.g., Prophet, LSTM) for longer-horizon predictions
-- Introduce a recommendation engine for cross-sell and upsell opportunities
-- Add role-based authentication for multi-user dashboard access
-- Deploy the dashboard to the cloud with CI/CD for continuous delivery
-- Incorporate anomaly detection for early fraud or data-quality alerts
-- Expand segmentation with behavioral and psychographic features beyond RFM
-
----
-
-## Learning Outcomes
-
-Building Project FORESIGHT involved practical, end-to-end application of:
-
-- Real-world data cleaning on a messy, inconsistent transactional dataset
-- Feature engineering techniques for customer and product-level modeling
-- Unsupervised learning for customer segmentation and its business interpretation
-- Time-series forecasting fundamentals applied to retail demand
-- Translating model outputs into operational business recommendations
-- Designing and building a production-style interactive dashboard with Streamlit
-- Structuring a data science project for readability, reproducibility, and collaboration
+**Not done yet — don't claim otherwise:**
+- No modularized `src/` pipeline (notebooks aren't refactored into reusable scripts)
+- No saved/serialized models in `models/`
+- No exported reports in `reports/`
+- No live deployment link confirmed (add one only once it's actually deployed and working)
 
 ---
 
 ## Author
 
-**Your Name**
-
-Data Analyst / Data Scientist passionate about turning data into decisions.
-
-[GitHub](https://github.com/<your-username>) · [LinkedIn](https://linkedin.com/in/<your-username>) · [Portfolio](https://your-portfolio-link.com)
+**D.S. Yashaswi**
+[GitHub](https://github.com/Yashr4635)
 
 ---
 
 ## License
 
-This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
-
-<div align="center">
-
-<br>
-
-If you found this project useful, consider giving it a star on GitHub.
-
-</div>
+MIT
