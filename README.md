@@ -12,15 +12,23 @@
 ![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-**[GitHub Repository](https://github.com/Yashr4635/Project_FORESIGHT)**
+**[Live Demo](https://project-foresight-uk4v.onrender.com/)** · **[GitHub Repository](https://github.com/Yashr4635/Project_FORESIGHT)**
 
 </div>
 
 ---
 
+## Live Demo
+
+**[project-foresight-uk4v.onrender.com](https://project-foresight-uk4v.onrender.com/)**
+
+> ⚠️ Hosted on Render's free tier — the app sleeps after inactivity, so the first load after idle time can take 30–60 seconds to spin up. If you're sharing this link with a recruiter, mention that upfront so a slow first load doesn't read as broken.
+
+---
+
 ## What this is
 
-Project FORESIGHT analyzes retail transaction data through a series of Jupyter notebooks — cleaning, EDA, feature engineering, customer segmentation, demand forecasting, and inventory recommendation — and presents the output through a Streamlit dashboard.
+Project FORESIGHT analyzes retail transaction data through a series of Jupyter notebooks — cleaning, EDA, feature engineering, customer segmentation, demand forecasting, and inventory recommendation — and presents the output through a Streamlit dashboard deployed on Render.
 
 **Read this before you present it in an interview:** the analysis logic currently lives in the notebooks, not in reusable Python modules. `src/` exists as a folder but has no scripts in it yet. If you're asked "is this pipeline modular / production-style," the honest answer right now is no — it's notebook-driven analysis feeding a dashboard app. That's a completely normal and defensible stage for a project like this. It is not a "production ML pipeline," and this README won't call it one.
 
@@ -71,7 +79,7 @@ Project_FORESIGHT/
 07_Dashboard_Preparation→ aggregation for the Streamlit app
         │
         ▼
-   app/app.py (Streamlit)
+   app/app.py (Streamlit) → deployed on Render
 ```
 
 ---
@@ -108,8 +116,9 @@ Screenshots below are the actual files from `screenshots/` — I'm not using pla
 | Visualization | Plotly |
 | Dashboard | Streamlit |
 | Analysis environment | Jupyter Notebook |
+| Deployment | Render |
 
-> ⚠️ **TODO for you:** paste the actual contents of `requirements.txt` here (or just keep the table in sync with it). I'm not listing OpenPyXL, Git, Render, or Railway as tech stack items because I haven't seen evidence they're in use — don't add them back in unless they're real dependencies/deployment targets.
+> ⚠️ **TODO for you:** paste the actual contents of `requirements.txt` here (or just keep the table in sync with it). I'm not listing OpenPyXL, Git, or Railway as tech stack items — Render is the confirmed deployment target, not Railway, based on the live link you gave me. If you also deployed to Railway at some point, tell me and I'll add it back; otherwise leave it out.
 
 ---
 
@@ -145,12 +154,12 @@ Being direct about project status, because vague completeness claims fall apart 
 - Customer segmentation via K-Means (notebook-based)
 - Demand forecasting notebook
 - Inventory recommendation notebook
+- Live deployment on Render
 
 **Not done yet — don't claim otherwise:**
 - No modularized `src/` pipeline (notebooks aren't refactored into reusable scripts)
 - No saved/serialized models in `models/`
 - No exported reports in `reports/`
-- No live deployment link confirmed (add one only once it's actually deployed and working)
 
 ---
 
